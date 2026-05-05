@@ -1,0 +1,40 @@
+{
+  "name": "Telecom Electronics",
+  "tagline": "Your Trusted Local Security Partner",
+  "intro": "Telecom Electronics is a local specialist in CCTV, DVR/NVR systems and security accessories. From single-camera homes to multi-zone commercial setups, we supply, install and maintain reliable surveillance solutions backed by genuine after-sales support.",
+  "shortIntro": "CCTV, DVR/NVR & Security Solutions — Sales, Installation & AMC.",
+  "address": {
+    "line1": "Shop No. 12, Main Market Road",
+    "line2": "Sector 21, Near City Bank ATM",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "pincode": "110021",
+    "country": "India",
+    "full": "Shop No. 12, Main Market Road, Sector 21, New Delhi, Delhi 110021, India"
+  },
+  "phones": [
+    { "label": "Sales", "number": "+91-9876543210" },
+    { "label": "Service", "number": "+91-9876543211" }
+  ],
+  "primaryPhone": "+91-9876543210",
+  "whatsapp": {
+    "number": "919876543210",
+    "defaultMessage": "Hi Telecom Electronics, I'd like to enquire about your CCTV / security solutions."
+  },
+  "email": "sales@securityzone.local",
+  "hours": [
+    { "day": "Monday – Saturday", "time": "10:00 AM – 9:00 PM" },
+    { "day": "Sunday", "time": "11:00 AM – 6:00 PM" }
+  ],
+  "social": {
+    "facebook": "https://facebook.com/",
+    "instagram": "https://instagram.com/",
+    "youtube": "https://youtube.com/"
+  },
+  "stats": [
+    { "value": "12+", "label": "Years in Business" },
+    { "value": "5000+", "label": "Installations Done" },
+    { "value": "20+", "label": "Trusted Brands" },
+    { "value": "24/7", "label": "Service Support" }
+  ]
+}

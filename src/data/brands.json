@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "id": "hikvision", "name": "Hikvision" },
+    { "id": "cp-plus", "name": "CP Plus" },
+    { "id": "dahua", "name": "Dahua" },
+    { "id": "godrej", "name": "Godrej Security" },
+    { "id": "honeywell", "name": "Honeywell" },
+    { "id": "tp-link", "name": "TP-Link" },
+    { "id": "dlink", "name": "D-Link" },
+    { "id": "panasonic", "name": "Panasonic" },
+    { "id": "bosch", "name": "Bosch" },
+    { "id": "axis", "name": "Axis" },
+    { "id": "uniview", "name": "Uniview" },
+    { "id": "secureeye", "name": "Secureye" }
+  ]
+}

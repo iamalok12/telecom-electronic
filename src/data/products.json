@@ -1,0 +1,110 @@
+{
+  "categories": [
+    { "id": "cctv", "name": "CCTV Cameras" },
+    { "id": "dvr-nvr", "name": "DVR / NVR Systems" },
+    { "id": "accessories", "name": "Accessories" },
+    { "id": "alarms", "name": "Alarms & Sensors" }
+  ],
+  "items": [
+    {
+      "id": "cam-dome-2mp",
+      "category": "cctv",
+      "name": "2MP HD Dome Camera",
+      "description": "Indoor dome camera with crisp 1080p resolution, IR night vision up to 20m and a wide viewing angle.",
+      "image": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=70",
+      "featured": true,
+      "tags": ["1080p", "Indoor", "Night Vision"]
+    },
+    {
+      "id": "cam-bullet-5mp",
+      "category": "cctv",
+      "name": "5MP Bullet Camera",
+      "description": "Weatherproof outdoor bullet camera with 5MP clarity and smart IR for sharp night-time footage.",
+      "image": "https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=800&q=70",
+      "featured": true,
+      "tags": ["5MP", "Outdoor", "IP66"]
+    },
+    {
+      "id": "cam-ptz-4mp",
+      "category": "cctv",
+      "name": "4MP PTZ Camera",
+      "description": "Pan-tilt-zoom camera with 360° coverage, ideal for warehouses, parking lots and large premises.",
+      "image": "https://images.unsplash.com/photo-1611174340637-6e8aab1f81db?auto=format&fit=crop&w=800&q=70",
+      "tags": ["PTZ", "360°", "Outdoor"]
+    },
+    {
+      "id": "cam-wifi-3mp",
+      "category": "cctv",
+      "name": "3MP Wi-Fi Smart Camera",
+      "description": "Plug-and-play Wi-Fi camera with mobile app, two-way audio and motion alerts for home use.",
+      "image": "https://images.unsplash.com/photo-1585503418537-88331351ad99?auto=format&fit=crop&w=800&q=70",
+      "featured": true,
+      "tags": ["Wi-Fi", "Smart", "App"]
+    },
+    {
+      "id": "dvr-8ch",
+      "category": "dvr-nvr",
+      "name": "8-Channel HD DVR",
+      "description": "Hybrid DVR supporting up to 8 analog HD cameras with H.265+ compression and remote viewing.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=70",
+      "tags": ["8 CH", "H.265+", "Hybrid"]
+    },
+    {
+      "id": "nvr-16ch",
+      "category": "dvr-nvr",
+      "name": "16-Channel 4K NVR",
+      "description": "Network video recorder for IP cameras with up to 4K recording and dual HDD bays for long retention.",
+      "image": "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=800&q=70",
+      "featured": true,
+      "tags": ["16 CH", "4K", "IP"]
+    },
+    {
+      "id": "hdd-2tb",
+      "category": "accessories",
+      "name": "2TB Surveillance HDD",
+      "description": "Purpose-built hard drive optimised for 24/7 CCTV recording and high write workloads.",
+      "image": "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?auto=format&fit=crop&w=800&q=70",
+      "tags": ["2TB", "24/7"]
+    },
+    {
+      "id": "smps-10a",
+      "category": "accessories",
+      "name": "10A CCTV SMPS Power Supply",
+      "description": "Stable multi-channel SMPS for powering up to 8 cameras with surge protection.",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=70",
+      "tags": ["10A", "Multi-channel"]
+    },
+    {
+      "id": "cable-coax",
+      "category": "accessories",
+      "name": "RG59 Coaxial Cable (90m)",
+      "description": "High-quality copper-core coaxial cable for clear long-distance CCTV signal transmission.",
+      "image": "https://images.unsplash.com/photo-1601445638532-3c6f6c3aa1d6?auto=format&fit=crop&w=800&q=70",
+      "tags": ["RG59", "90m"]
+    },
+    {
+      "id": "alarm-motion",
+      "category": "alarms",
+      "name": "Wireless Motion Sensor",
+      "description": "PIR-based motion sensor with adjustable sensitivity, ideal for entrances and corridors.",
+      "image": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=70",
+      "tags": ["PIR", "Wireless"]
+    },
+    {
+      "id": "alarm-door",
+      "category": "alarms",
+      "name": "Door / Window Sensor",
+      "description": "Magnetic contact sensor that triggers an alert the moment a door or window is opened.",
+      "image": "https://images.unsplash.com/photo-1581094488379-6f1ef0a78b8d?auto=format&fit=crop&w=800&q=70",
+      "tags": ["Magnetic", "Alert"]
+    },
+    {
+      "id": "alarm-siren",
+      "category": "alarms",
+      "name": "120dB Outdoor Siren",
+      "description": "Loud weatherproof siren and strobe for instant on-premise alerting.",
+      "image": "https://images.unsplash.com/photo-1602848597190-0c2e0bba6a6a?auto=format&fit=crop&w=800&q=70",
+      "tags": ["120 dB", "Outdoor"]
+    }
+  ]
+}
