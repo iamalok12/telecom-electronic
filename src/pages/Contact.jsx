@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SectionHeader from '../components/SectionHeader'
+import AnimateIn from '../components/AnimateIn'
 import shop from '../data/shop.json'
 import { getCtaLinks, buildWhatsAppLink } from '../utils/links'
 import { PhoneIcon, MailIcon, MapPinIcon, WhatsAppIcon } from '../components/Icons'
@@ -25,15 +26,18 @@ export default function Contact() {
 
   return (
     <div className="container-x py-14 md:py-20">
-      <SectionHeader
-        eyebrow="Contact"
-        title="Let's secure your space"
-        subtitle="Visit our shop, call us, or send a message on WhatsApp — we usually respond within minutes during business hours."
-      />
+      <AnimateIn variant="fade-up">
+        <SectionHeader
+          eyebrow="Contact"
+          title="Let's secure your space"
+          subtitle="Visit our shop, call us, or send a message on WhatsApp — we usually respond within minutes during business hours."
+        />
+      </AnimateIn>
 
       <div className="mt-12 grid gap-8 lg:grid-cols-5">
         {/* Info side */}
         <div className="lg:col-span-2 space-y-4">
+          <AnimateIn variant="fade-left" delay={0}>
           <a href={cta.tel} className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
             <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <PhoneIcon className="w-5 h-5" />
@@ -47,7 +51,9 @@ export default function Contact() {
               ))}
             </div>
           </a>
+          </AnimateIn>
 
+          <AnimateIn variant="fade-left" delay={80}>
           <a href={cta.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
             <span className="grid place-items-center w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200 shrink-0">
               <WhatsAppIcon className="w-5 h-5" />
@@ -58,7 +64,9 @@ export default function Contact() {
               <p className="text-sm text-gray-500 mt-0.5">Pre-filled with your enquiry</p>
             </div>
           </a>
+          </AnimateIn>
 
+          <AnimateIn variant="fade-left" delay={160}>
           <a href={cta.mail} className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
             <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <MailIcon className="w-5 h-5" />
@@ -68,7 +76,9 @@ export default function Contact() {
               <p className="text-gray-900 font-semibold break-all">{shop.email}</p>
             </div>
           </a>
+          </AnimateIn>
 
+          <AnimateIn variant="fade-left" delay={240}>
           <div className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
             <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <MapPinIcon className="w-5 h-5" />
@@ -89,10 +99,11 @@ export default function Contact() {
               </div>
             </div>
           </div>
+          </AnimateIn>
         </div>
 
         {/* Form + Map */}
-        <div className="lg:col-span-3 space-y-6">
+        <AnimateIn variant="fade-right" className="lg:col-span-3 space-y-6">
           <form
             onSubmit={onSubmit}
             className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm"
@@ -156,7 +167,7 @@ export default function Contact() {
               className="w-full h-72 md:h-80 border-0"
             />
           </div>
-        </div>
+        </AnimateIn>
       </div>
     </div>
   )

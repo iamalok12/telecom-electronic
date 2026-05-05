@@ -1,4 +1,5 @@
 import SectionHeader from '../components/SectionHeader'
+import AnimateIn from '../components/AnimateIn'
 import services from '../data/services.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, CheckIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
@@ -8,17 +9,19 @@ export default function Services() {
   const cta = getCtaLinks()
   return (
     <div className="container-x py-14 md:py-20">
-      <SectionHeader
-        eyebrow="Services"
-        title="End-to-end security services"
-        subtitle="Whether you need a fresh installation or maintenance for an existing setup, our team handles it on-site with care."
-      />
+      <AnimateIn variant="fade-up">
+        <SectionHeader
+          eyebrow="Services"
+          title="End-to-end security services"
+          subtitle="Whether you need a fresh installation or maintenance for an existing setup, our team handles it on-site with care."
+        />
+      </AnimateIn>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.items.map((s) => (
+        {services.items.map((s, i) => (
+          <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
           <article
-            key={s.id}
-            className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition"
+            className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition h-full"
           >
             <span className="grid place-items-center w-12 h-12 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200">
               <ServiceIcon name={s.icon} className="w-6 h-6" />
@@ -34,9 +37,11 @@ export default function Services() {
               ))}
             </ul>
           </article>
+          </AnimateIn>
         ))}
       </div>
 
+      <AnimateIn variant="scale" delay={100}>
       <div className="mt-14 rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
           <h3 className="text-2xl font-bold text-gray-900">Need a free site survey?</h3>
@@ -51,6 +56,7 @@ export default function Services() {
           </a>
         </div>
       </div>
+      </AnimateIn>
     </div>
   )
 }

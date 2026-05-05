@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import AnimateIn from '../components/AnimateIn'
 
 export default function NotFound() {
   return (
-    <div className="container-x py-24 md:py-32 text-center">
+    <AnimateIn variant="scale" className="container-x py-24 md:py-32 text-center">
       <p className="text-brand-600 font-semibold tracking-wider uppercase text-xs">404</p>
       <h1 className="mt-3 text-4xl md:text-5xl font-bold text-gray-900">Page not found</h1>
       <p className="mt-3 text-gray-500">The page you’re looking for doesn’t exist.</p>
@@ -12,6 +13,6 @@ export default function NotFound() {
       >
         Back to Home
       </Link>
-    </div>
+    </AnimateIn>
   )
 }

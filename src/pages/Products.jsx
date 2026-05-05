@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
+import AnimateIn from '../components/AnimateIn'
 import products from '../data/products.json'
 
 export default function Products() {
@@ -15,13 +16,15 @@ export default function Products() {
 
   return (
     <div className="container-x py-14 md:py-20">
-      <SectionHeader
-        eyebrow="Our Products"
-        title="Cameras, recorders & accessories"
-        subtitle="Browse our catalogue of CCTV cameras, DVR/NVR systems and security accessories. Call us for live pricing and combos."
-      />
+      <AnimateIn variant="fade-up">
+        <SectionHeader
+          eyebrow="Our Products"
+          title="Cameras, recorders & accessories"
+          subtitle="Browse our catalogue of CCTV cameras, DVR/NVR systems and security accessories. Call us for live pricing and combos."
+        />
+      </AnimateIn>
 
-      <div className="mt-8 flex flex-wrap gap-2">
+      <AnimateIn variant="fade-up" delay={100} className="mt-8 flex flex-wrap gap-2">
         {tabs.map((t) => {
           const isActive = active === t.id
           return (
@@ -38,11 +41,13 @@ export default function Products() {
             </button>
           )
         })}
-      </div>
+      </AnimateIn>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filtered.map((p) => (
-          <ProductCard key={p.id} product={p} />
+        {filtered.map((p, i) => (
+          <AnimateIn key={p.id} variant="fade-up" delay={Math.min(i * 60, 400)}>
+            <ProductCard product={p} />
+          </AnimateIn>
         ))}
       </div>
 

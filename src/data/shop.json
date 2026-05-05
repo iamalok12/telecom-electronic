@@ -32,9 +32,25 @@
     "youtube": "https://youtube.com/"
   },
   "stats": [
-    { "value": "12+", "label": "Years in Business" },
+    { "value": "Est. 1984", "label": "In Business Since" },
+    { "value": "2", "label": "Locations" },
     { "value": "5000+", "label": "Installations Done" },
-    { "value": "20+", "label": "Trusted Brands" },
     { "value": "24/7", "label": "Service Support" }
+  ],
+  "branches": [
+    {
+      "name": "Telecom Electronics",
+      "tag": "Main Branch",
+      "address": "Shop No. 12, Main Market Road, Sector 21, New Delhi, Delhi 110021",
+      "phone": "+91-9876543210",
+      "hours": "Mon–Sat 10 AM – 9 PM, Sun 11 AM – 6 PM"
+    },
+    {
+      "name": "Security Zone",
+      "tag": "Second Branch",
+      "address": "Shop No. 7, Lajpat Nagar Market, New Delhi, Delhi 110024",
+      "phone": "+91-9876543212",
+      "hours": "Mon–Sat 10 AM – 8 PM, Sun Closed"
+    }
   ]
 }
