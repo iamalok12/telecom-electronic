@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import shop from '../data/shop.json'
 import nav from '../data/navigation.json'
 import { getCtaLinks } from '../utils/links'
-import { PhoneIcon, MenuIcon, CloseIcon, ShieldIcon } from './Icons'
+import { PhoneIcon, MenuIcon, CloseIcon } from './Icons'
+import brandIcon from '../assets/brand-icon.png'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -33,7 +34,7 @@ export default function Navbar() {
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2.5 group">
           <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-600/20 text-brand-300 ring-1 ring-brand-500/30 group-hover:bg-brand-600/30 transition">
-            <ShieldIcon className="w-5 h-5" />
+            <img src={brandIcon} alt="Brand Icon" className="w-6 h-6 object-contain" />
           </span>
           <span className="font-bold text-white text-lg tracking-tight">
             {shop.name}
