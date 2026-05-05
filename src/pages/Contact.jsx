@@ -34,56 +34,56 @@ export default function Contact() {
       <div className="mt-12 grid gap-8 lg:grid-cols-5">
         {/* Info side */}
         <div className="lg:col-span-2 space-y-4">
-          <a href={cta.tel} className="flex items-start gap-4 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] p-5 transition">
-            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-500/15 text-brand-300 ring-1 ring-brand-500/30 shrink-0">
+          <a href={cta.tel} className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
+            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <PhoneIcon className="w-5 h-5" />
             </span>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Call us</p>
+              <p className="text-xs uppercase tracking-wider text-gray-400">Call us</p>
               {shop.phones.map((p) => (
-                <p key={p.number} className="text-white font-semibold">
+                <p key={p.number} className="text-gray-900 font-semibold">
                   {p.label}: {p.number}
                 </p>
               ))}
             </div>
           </a>
 
-          <a href={cta.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] p-5 transition">
-            <span className="grid place-items-center w-11 h-11 rounded-xl bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 shrink-0">
+          <a href={cta.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
+            <span className="grid place-items-center w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200 shrink-0">
               <WhatsAppIcon className="w-5 h-5" />
             </span>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">WhatsApp</p>
-              <p className="text-white font-semibold">Chat with our team</p>
-              <p className="text-sm text-slate-400 mt-0.5">Pre-filled with your enquiry</p>
+              <p className="text-xs uppercase tracking-wider text-gray-400">WhatsApp</p>
+              <p className="text-gray-900 font-semibold">Chat with our team</p>
+              <p className="text-sm text-gray-500 mt-0.5">Pre-filled with your enquiry</p>
             </div>
           </a>
 
-          <a href={cta.mail} className="flex items-start gap-4 rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] p-5 transition">
-            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-500/15 text-brand-300 ring-1 ring-brand-500/30 shrink-0">
+          <a href={cta.mail} className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 p-5 transition shadow-sm">
+            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <MailIcon className="w-5 h-5" />
             </span>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Email</p>
-              <p className="text-white font-semibold break-all">{shop.email}</p>
+              <p className="text-xs uppercase tracking-wider text-gray-400">Email</p>
+              <p className="text-gray-900 font-semibold break-all">{shop.email}</p>
             </div>
           </a>
 
-          <div className="flex items-start gap-4 rounded-2xl border border-white/5 bg-white/[0.03] p-5">
-            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-500/15 text-brand-300 ring-1 ring-brand-500/30 shrink-0">
+          <div className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200 shrink-0">
               <MapPinIcon className="w-5 h-5" />
             </span>
             <div>
-              <p className="text-xs uppercase tracking-wider text-slate-400">Visit shop</p>
-              <p className="text-white font-medium">{shop.address.line1}</p>
-              <p className="text-sm text-slate-400">{shop.address.line2}</p>
-              <p className="text-sm text-slate-400">
+              <p className="text-xs uppercase tracking-wider text-gray-400">Visit shop</p>
+              <p className="text-gray-900 font-medium">{shop.address.line1}</p>
+              <p className="text-sm text-gray-500">{shop.address.line2}</p>
+              <p className="text-sm text-gray-500">
                 {shop.address.city}, {shop.address.state} {shop.address.pincode}
               </p>
-              <div className="mt-3 text-sm text-slate-400 space-y-0.5">
+              <div className="mt-3 text-sm text-gray-500 space-y-0.5">
                 {shop.hours.map((h) => (
                   <p key={h.day}>
-                    <span className="text-slate-300">{h.day}:</span> {h.time}
+                    <span className="text-gray-700">{h.day}:</span> {h.time}
                   </p>
                 ))}
               </div>
@@ -95,40 +95,40 @@ export default function Contact() {
         <div className="lg:col-span-3 space-y-6">
           <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-white/5 bg-white/[0.03] p-6 md:p-8"
+            className="rounded-2xl border border-gray-200 bg-white p-6 md:p-8 shadow-sm"
           >
-            <h3 className="text-white font-semibold text-lg">Send us a message</h3>
-            <p className="text-sm text-slate-400 mt-1">
+            <h3 className="text-gray-900 font-semibold text-lg">Send us a message</h3>
+            <p className="text-sm text-gray-500 mt-1">
               Fill in your details and we'll continue the chat over WhatsApp.
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-xs font-medium text-slate-300" htmlFor="name">Your name</label>
+                <label className="text-xs font-medium text-gray-700" htmlFor="name">Your name</label>
                 <input
                   id="name" name="name" type="text" required
                   value={form.name} onChange={onChange}
-                  className="mt-1.5 w-full rounded-lg bg-ink-900 border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50"
+                  className="mt-1.5 w-full rounded-lg bg-gray-50 border border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50"
                   placeholder="John Doe"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium text-slate-300" htmlFor="phone">Phone</label>
+                <label className="text-xs font-medium text-gray-700" htmlFor="phone">Phone</label>
                 <input
                   id="phone" name="phone" type="tel"
                   value={form.phone} onChange={onChange}
-                  className="mt-1.5 w-full rounded-lg bg-ink-900 border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50"
+                  className="mt-1.5 w-full rounded-lg bg-gray-50 border border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50"
                   placeholder="+91 98765 43210"
                 />
               </div>
             </div>
 
             <div className="mt-4">
-              <label className="text-xs font-medium text-slate-300" htmlFor="message">How can we help?</label>
+              <label className="text-xs font-medium text-gray-700" htmlFor="message">How can we help?</label>
               <textarea
                 id="message" name="message" rows="4"
                 value={form.message} onChange={onChange}
-                className="mt-1.5 w-full rounded-lg bg-ink-900 border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50 resize-none"
+                className="mt-1.5 w-full rounded-lg bg-gray-50 border border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50 resize-none"
                 placeholder="I'm looking for a 4-camera CCTV setup for my shop..."
               />
             </div>
@@ -141,13 +141,13 @@ export default function Contact() {
             </button>
 
             {submitted && (
-              <p className="mt-3 text-sm text-emerald-300">
+              <p className="mt-3 text-sm text-emerald-600">
                 Opening WhatsApp… you can also call us directly at {shop.primaryPhone}.
               </p>
             )}
           </form>
 
-          <div className="rounded-2xl overflow-hidden border border-white/5 bg-ink-900">
+          <div className="rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
             <iframe
               title={`${shop.name} location map`}
               src={mapsSrc}

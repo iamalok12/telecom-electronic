@@ -25,7 +25,7 @@ export default function Home() {
           />
           <Link
             to="/products"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
             View all products <ArrowRightIcon className="w-4 h-4" />
           </Link>
@@ -48,20 +48,20 @@ export default function Home() {
           {topServices.map((s) => (
             <div
               key={s.id}
-              className="rounded-2xl border border-white/5 bg-white/[0.03] p-6 hover:border-brand-500/30 hover:bg-white/[0.05] transition"
+              className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition"
             >
-              <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-500/15 text-brand-300 ring-1 ring-brand-500/30">
+              <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200">
                 <ServiceIcon name={s.icon} className="w-5 h-5" />
               </span>
-              <h3 className="mt-4 text-white font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm text-slate-400 leading-relaxed">{s.description}</p>
+              <h3 className="mt-4 text-gray-900 font-semibold">{s.title}</h3>
+              <p className="mt-2 text-sm text-gray-500 leading-relaxed">{s.description}</p>
             </div>
           ))}
         </div>
         <div className="mt-8">
           <Link
             to="/services"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
             See all services <ArrowRightIcon className="w-4 h-4" />
           </Link>
@@ -79,7 +79,7 @@ export default function Home() {
           {brands.items.slice(0, 12).map((b) => (
             <div
               key={b.id}
-              className="rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] py-5 px-3 grid place-items-center text-sm font-semibold text-slate-300 hover:text-white transition"
+              className="rounded-xl border border-gray-200 bg-white hover:bg-gray-50 py-5 px-3 grid place-items-center text-sm font-semibold text-gray-700 hover:text-gray-900 transition shadow-sm"
             >
               {b.name}
             </div>
@@ -88,7 +88,7 @@ export default function Home() {
         <div className="mt-8 text-center">
           <Link
             to="/brands"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-300 hover:text-brand-200"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
             See all brands <ArrowRightIcon className="w-4 h-4" />
           </Link>

@@ -8,16 +8,16 @@ export default function Footer() {
   const cta = getCtaLinks()
   const year = new Date().getFullYear()
   return (
-    <footer className="mt-24 border-t border-white/5 bg-ink-950">
+    <footer className="mt-24 border-t border-gray-200 bg-gray-50">
       <div className="container-x py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
-            <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-600/20 text-brand-300 ring-1 ring-brand-500/30">
-              <ShieldIcon className="w-5 h-5" />
+            <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-50 ring-1 ring-brand-200">
+              <ShieldIcon className="w-5 h-5 text-brand-600" />
             </span>
-            <span className="font-bold text-white text-lg">{shop.name}</span>
+            <span className="font-bold text-gray-900 text-lg">{shop.name}</span>
           </div>
-          <p className="mt-4 text-sm text-slate-400 max-w-md leading-relaxed">
+          <p className="mt-4 text-sm text-gray-500 max-w-md leading-relaxed">
             {shop.shortIntro}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
@@ -31,11 +31,11 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
+          <h4 className="text-gray-900 font-semibold text-sm mb-4 uppercase tracking-wider">Quick Links</h4>
           <ul className="space-y-2">
             {nav.primary.map((l) => (
               <li key={l.path}>
-                <Link to={l.path} className="text-sm text-slate-400 hover:text-white transition">
+                <Link to={l.path} className="text-sm text-gray-500 hover:text-brand-600 transition">
                   {l.name}
                 </Link>
               </li>
@@ -44,30 +44,30 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Reach Us</h4>
-          <ul className="space-y-3 text-sm text-slate-400">
+          <h4 className="text-gray-900 font-semibold text-sm mb-4 uppercase tracking-wider">Reach Us</h4>
+          <ul className="space-y-3 text-sm text-gray-500">
             <li className="flex gap-2.5">
-              <MapPinIcon className="w-4 h-4 mt-0.5 text-brand-300 shrink-0" />
+              <MapPinIcon className="w-4 h-4 mt-0.5 text-brand-600 shrink-0" />
               <span>{shop.address.full}</span>
             </li>
             {shop.phones.map((p) => (
               <li key={p.number} className="flex gap-2.5">
-                <PhoneIcon className="w-4 h-4 mt-0.5 text-brand-300 shrink-0" />
-                <a href={`tel:${p.number.replace(/[^+\d]/g, '')}`} className="hover:text-white transition">
+                <PhoneIcon className="w-4 h-4 mt-0.5 text-brand-600 shrink-0" />
+                <a href={`tel:${p.number.replace(/[^+\d]/g, '')}`} className="hover:text-brand-600 transition">
                   {p.label}: {p.number}
                 </a>
               </li>
             ))}
             <li className="flex gap-2.5">
-              <MailIcon className="w-4 h-4 mt-0.5 text-brand-300 shrink-0" />
-              <a href={cta.mail} className="hover:text-white transition">{shop.email}</a>
+              <MailIcon className="w-4 h-4 mt-0.5 text-brand-600 shrink-0" />
+              <a href={cta.mail} className="hover:text-brand-600 transition">{shop.email}</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/5">
-        <div className="container-x py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs text-slate-500">
+      <div className="border-t border-gray-200">
+        <div className="container-x py-5 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs text-gray-400">
           <p>© {year} {shop.name}. All rights reserved.</p>
           <p>Designed for reliability and trust.</p>
         </div>

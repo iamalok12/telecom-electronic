@@ -14,9 +14,9 @@ export default function Brands() {
         {brands.items.map((b) => (
           <div
             key={b.id}
-            className="aspect-[3/2] rounded-2xl border border-white/5 bg-white/[0.03] hover:bg-white/[0.06] hover:border-brand-500/30 transition grid place-items-center px-3 text-center"
+            className="aspect-[3/2] rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-brand-300 transition grid place-items-center px-3 text-center shadow-sm"
           >
-            <span className="text-sm md:text-base font-semibold text-slate-200">{b.name}</span>
+            <span className="text-sm md:text-base font-semibold text-gray-700">{b.name}</span>
           </div>
         ))}
       </div>

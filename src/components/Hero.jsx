@@ -33,8 +33,8 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       {/* background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full bg-brand-600/20 blur-[120px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(47,112,255,0.12),transparent_60%)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[600px] rounded-full bg-brand-100/60 blur-[120px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(47,112,255,0.06),transparent_60%)]" />
       </div>
 
       <div
@@ -43,24 +43,24 @@ export default function Hero() {
         onMouseLeave={handleMouseLeave}
       >
         <div className="lg:col-span-7 fade-in">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-xs font-medium text-brand-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
             Trusted local CCTV & security experts
           </span>
 
-          <h1 className="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
+          <h1 className="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-[1.05]">
             Protect what matters with
             <span className="block gradient-text">{shop.name}.</span>
           </h1>
 
-          <p className="mt-5 text-base md:text-lg text-slate-300 max-w-xl leading-relaxed">
+          <p className="mt-5 text-base md:text-lg text-gray-600 max-w-xl leading-relaxed">
             {shop.intro}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={cta.tel}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition shadow-lg shadow-brand-600/30"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition shadow-lg shadow-brand-600/20"
             >
               <PhoneIcon className="w-5 h-5" />
               Call {shop.primaryPhone}
@@ -69,14 +69,14 @@ export default function Hero() {
               href={cta.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition shadow-lg shadow-emerald-600/30"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition shadow-lg shadow-emerald-600/20"
             >
               <WhatsAppIcon className="w-5 h-5" />
               WhatsApp Us
             </a>
             <Link
               to="/products"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold border border-white/10 transition"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold border border-gray-200 transition"
             >
               Browse Products
               <ArrowRightIcon className="w-4 h-4" />
@@ -85,9 +85,9 @@ export default function Hero() {
 
           <dl className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl">
             {shop.stats.map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/5 bg-white/[0.03] px-4 py-3">
-                <dt className="text-xl md:text-2xl font-bold text-white">{s.value}</dt>
-                <dd className="text-xs text-slate-400 mt-0.5">{s.label}</dd>
+              <div key={s.label} className="rounded-xl border border-gray-200 bg-white px-4 py-3 shadow-sm">
+                <dt className="text-xl md:text-2xl font-bold text-gray-900">{s.value}</dt>
+                <dd className="text-xs text-gray-500 mt-0.5">{s.label}</dd>
               </div>
             ))}
           </dl>
@@ -99,18 +99,18 @@ export default function Hero() {
             className="relative mx-auto max-w-md transition-transform duration-200 ease-out will-change-transform"
             style={{ transform: 'perspective(900px) rotateX(0deg) rotateY(0deg)' }}
           >
-            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-500/30 via-brand-600/20 to-transparent blur-2xl" />
-            <div className="relative aspect-square rounded-[2rem] glow-ring border border-white/10 bg-gradient-to-br from-ink-800 to-ink-950 p-8 grid place-items-center overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(rgba(255,255,255,.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.6)_1px,transparent_1px)] [background-size:32px_32px]" />
-              <div className="relative grid place-items-center w-44 h-44 rounded-full bg-brand-600/15 ring-1 ring-brand-500/30">
-                <CameraIcon className="w-24 h-24 text-brand-200" />
+            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-200/40 via-brand-100/30 to-transparent blur-2xl" />
+            <div className="relative aspect-square rounded-[2rem] glow-ring border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-8 grid place-items-center overflow-hidden">
+              <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(0,0,0,.3)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.3)_1px,transparent_1px)] [background-size:32px_32px]" />
+              <div className="relative grid place-items-center w-44 h-44 rounded-full bg-brand-50 ring-1 ring-brand-200">
+                <CameraIcon className="w-24 h-24 text-brand-600" />
               </div>
-              <div className="absolute top-5 left-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 text-[11px] font-semibold border border-emerald-500/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="absolute top-5 left-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-[11px] font-semibold border border-emerald-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 LIVE
               </div>
-              <div className="absolute bottom-5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/5 text-slate-200 text-[11px] font-semibold border border-white/10">
-                <ShieldIcon className="w-3.5 h-3.5 text-brand-300" />
+              <div className="absolute bottom-5 right-5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-50 text-gray-700 text-[11px] font-semibold border border-gray-200">
+                <ShieldIcon className="w-3.5 h-3.5 text-brand-600" />
                 Secured
               </div>
             </div>

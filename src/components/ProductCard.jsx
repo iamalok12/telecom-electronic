@@ -1,7 +1,7 @@
 export default function ProductCard({ product }) {
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] hover:border-brand-500/30 hover:bg-white/[0.05] transition">
-      <div className="aspect-[4/3] overflow-hidden bg-ink-900">
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white hover:border-brand-300 hover:shadow-md transition">
+      <div className="aspect-[4/3] overflow-hidden bg-gray-100">
         <img
           src={product.image}
           alt={product.name}
@@ -10,14 +10,14 @@ export default function ProductCard({ product }) {
         />
       </div>
       <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-white font-semibold leading-snug">{product.name}</h3>
-        <p className="mt-2 text-sm text-slate-400 leading-relaxed line-clamp-3">
+        <h3 className="text-gray-900 font-semibold leading-snug">{product.name}</h3>
+        <p className="mt-2 text-sm text-gray-500 leading-relaxed line-clamp-3">
           {product.description}
         </p>
         {product.tags?.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-1.5">
             {product.tags.map((t) => (
-              <span key={t} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-brand-500/10 text-brand-300 border border-brand-500/20">
+              <span key={t} className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-brand-50 text-brand-700 border border-brand-200">
                 {t}
               </span>
             ))}

@@ -12,7 +12,7 @@ import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-ink-950">
+    <div className="min-h-screen flex flex-col bg-white">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">

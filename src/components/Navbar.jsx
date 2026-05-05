@@ -20,23 +20,23 @@ export default function Navbar() {
 
   const linkClass = ({ isActive }) =>
     `px-3 py-2 text-sm font-medium transition-colors ${
-      isActive ? 'text-white' : 'text-slate-300 hover:text-white'
+      isActive ? 'text-brand-600' : 'text-gray-600 hover:text-gray-900'
     }`
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all ${
         scrolled
-          ? 'bg-ink-950/85 backdrop-blur-md border-b border-white/5'
+          ? 'bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm'
           : 'bg-transparent'
       }`}
     >
       <div className="container-x flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-600/20 text-brand-300 ring-1 ring-brand-500/30 group-hover:bg-brand-600/30 transition">
+          <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand-50 ring-1 ring-brand-200 group-hover:bg-brand-100 transition">
             <img src={brandIcon} alt="Brand Icon" className="w-6 h-6 object-contain" />
           </span>
-          <span className="font-bold text-white text-lg tracking-tight">
+          <span className="font-bold text-gray-900 text-lg tracking-tight">
             {shop.name}
           </span>
         </Link>
@@ -62,14 +62,14 @@ export default function Navbar() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden grid place-items-center w-10 h-10 rounded-lg text-slate-200 hover:bg-white/5"
+          className="md:hidden grid place-items-center w-10 h-10 rounded-lg text-gray-700 hover:bg-gray-100"
         >
           {open ? <CloseIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-white/5 bg-ink-950/95 backdrop-blur">
+        <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur">
           <div className="container-x py-3 flex flex-col">
             {nav.primary.map((item) => (
               <NavLink
@@ -79,7 +79,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
                   `px-3 py-3 rounded-lg text-base ${
-                    isActive ? 'text-white bg-white/5' : 'text-slate-300 hover:bg-white/5'
+                    isActive ? 'text-brand-600 bg-brand-50' : 'text-gray-600 hover:bg-gray-50'
                   }`
                 }
               >
