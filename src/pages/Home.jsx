@@ -7,15 +7,15 @@ import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
 import PromotionPopup from '../components/PromotionPopup'
-import brands from '../data/brands.json'
-import services from '../data/services.json'
+import partners from '../data/partners.json'
+import solutions from '../data/solutions.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
 
 export default function Home() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
-  const topServices = services.items.slice(0, 3)
+  const topSolutions = solutions.items.slice(0, 3)
 
   // Fetch featured products from Firestore
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function Home() {
             <SectionHeader
               eyebrow="Featured Products"
               title="Surveillance gear we recommend"
-              subtitle="Hand-picked CCTV cameras and recorders from brands we trust and stock daily."
+              subtitle="Hand-picked CCTV cameras and recorders from partners we trust and stock daily."
             />
             <Link
               to="/products"
@@ -81,17 +81,17 @@ export default function Home() {
         )}
       </section>
 
-      {/* Services preview */}
+      {/* Solutions preview */}
       <section className="container-x py-16 md:py-20">
         <AnimateIn variant="fade-up">
           <SectionHeader
-            eyebrow="Our Services"
+            eyebrow="Our Solutions"
             title="More than just a shop"
             subtitle="From the first site visit to long-term maintenance, we handle every part of your security setup."
           />
         </AnimateIn>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {topServices.map((s, i) => (
+          {topSolutions.map((s, i) => (
             <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
               <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition h-full">
                 <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200">
@@ -105,25 +105,25 @@ export default function Home() {
         </div>
         <AnimateIn variant="fade-up" delay={100} className="mt-8">
           <Link
-            to="/services"
+            to="/solutions"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
-            See all services <ArrowRightIcon className="w-4 h-4" />
+            See all solutions <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </AnimateIn>
       </section>
 
-      {/* Brands strip */}
+      {/* Partners strip */}
       <section className="container-x py-16 md:py-20">
         <AnimateIn variant="fade-up">
           <SectionHeader
-            eyebrow="Brands We Stock"
-            title="Trusted by leading security brands"
+            eyebrow="Partners We Stock"
+            title="Trusted by leading security partners"
             align="center"
           />
         </AnimateIn>
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {brands.items.slice(0, 12).map((b, i) => (
+          {partners.items.slice(0, 12).map((b, i) => (
             <AnimateIn key={b.id} variant="scale" delay={i * 40}>
               <div className="rounded-xl border border-gray-200 bg-white hover:bg-gray-50 py-5 px-3 grid place-items-center text-sm font-semibold text-gray-700 hover:text-gray-900 transition shadow-sm h-full">
                 {b.name}
@@ -133,10 +133,10 @@ export default function Home() {
         </div>
         <AnimateIn variant="fade-up" delay={100} className="mt-8 text-center">
           <Link
-            to="/brands"
+            to="/partners"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
-            See all brands <ArrowRightIcon className="w-4 h-4" />
+            See all partners <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </AnimateIn>
       </section>

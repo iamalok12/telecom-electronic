@@ -7,16 +7,16 @@ import FloatingCTA from './components/FloatingCTA'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Products from './pages/Products'
-import Services from './pages/Services'
-import Brands from './pages/Brands'
+import Solutions from './pages/Solutions'
+import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 import OperationLogin from './pages/OperationLogin'
 import OperationLayout from './pages/OperationLayout'
 import OperationProducts from './pages/operation/OperationProducts'
-import OperationBrands from './pages/operation/OperationBrands'
-import OperationServices from './pages/operation/OperationServices'
-import OperationAnalytics from './pages/operation/OperationAnalytics'
+import OperationPartners from './pages/operation/OperationPartners'
+import OperationSolutions from './pages/operation/OperationSolutions'
+import OperationEnquiries from './pages/operation/OperationEnquiries'
 import OperationPromotions from './pages/operation/OperationPromotions'
 
 export default function App() {
@@ -27,8 +27,8 @@ export default function App() {
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
-          <Route path="services" element={<Services />} />
-          <Route path="brands" element={<Brands />} />
+          <Route path="solutions" element={<Solutions />} />
+          <Route path="partners" element={<Partners />} />
           <Route path="contact" element={<Contact />} />
         </Route>
 
@@ -46,9 +46,9 @@ export default function App() {
         >
           <Route index element={<Navigate to="/operation/products" replace />} />
           <Route path="products" element={<OperationProducts />} />
-          <Route path="brands" element={<OperationBrands />} />
-          <Route path="services" element={<OperationServices />} />
-          <Route path="analytics" element={<OperationAnalytics />} />
+          <Route path="partners" element={<OperationPartners />} />
+          <Route path="solutions" element={<OperationSolutions />} />
+          <Route path="enquiries" element={<OperationEnquiries />} />
           <Route path="promotions" element={<OperationPromotions />} />
         </Route>
 
@@ -69,8 +69,8 @@ function PublicLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/brands" element={<Brands />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>

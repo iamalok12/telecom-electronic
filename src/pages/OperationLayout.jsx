@@ -4,7 +4,7 @@ import {
   FiPackage, 
   FiTag, 
   FiSettings, 
-  FiBarChart2, 
+  FiMessageSquare, 
   FiBell, 
   FiLogOut,
   FiMenu,
@@ -28,9 +28,9 @@ export default function OperationLayout() {
 
   const navigationItems = [
     { name: 'Products', path: '/operation/products', icon: FiPackage },
-    { name: 'Brands', path: '/operation/brands', icon: FiTag },
-    { name: 'Services', path: '/operation/services', icon: FiSettings },
-    { name: 'Analytics', path: '/operation/analytics', icon: FiBarChart2 },
+    { name: 'Partners', path: '/operation/partners', icon: FiTag },
+    { name: 'Solutions', path: '/operation/solutions', icon: FiSettings },
+    { name: 'Enquiries', path: '/operation/enquiries', icon: FiMessageSquare },
     { name: 'Promotions', path: '/operation/promotions', icon: FiBell },
   ];
 

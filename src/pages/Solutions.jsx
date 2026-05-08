@@ -1,24 +1,24 @@
 import SectionHeader from '../components/SectionHeader'
 import AnimateIn from '../components/AnimateIn'
-import services from '../data/services.json'
+import solutions from '../data/solutions.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, CheckIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
 import { getCtaLinks } from '../utils/links'
 
-export default function Services() {
+export default function Solutions() {
   const cta = getCtaLinks()
   return (
     <div className="container-x py-14 md:py-20">
       <AnimateIn variant="fade-up">
         <SectionHeader
-          eyebrow="Services"
-          title="End-to-end security services"
+          eyebrow="Solutions"
+          title="End-to-end security solutions"
           subtitle="Whether you need a fresh installation or maintenance for an existing setup, our team handles it on-site with care."
         />
       </AnimateIn>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.items.map((s, i) => (
+        {solutions.items.map((s, i) => (
           <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
           <article
             className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition h-full"

@@ -1,25 +1,62 @@
 import { useState } from 'react'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import AnimateIn from '../components/AnimateIn'
 import shop from '../data/shop.json'
-import { getCtaLinks, buildWhatsAppLink } from '../utils/links'
-import { PhoneIcon, MailIcon, MapPinIcon, WhatsAppIcon } from '../components/Icons'
+import { getCtaLinks } from '../utils/links'
+import { PhoneIcon, MailIcon, MapPinIcon, WhatsAppIcon, ArrowRightIcon } from '../components/Icons'
 
 export default function Contact() {
   const cta = getCtaLinks()
   const [form, setForm] = useState({ name: '', phone: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [phoneError, setPhoneError] = useState('')
 
-  const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  const onChange = (e) => {
+    const { name, value } = e.target
+    
+    // Phone validation - only allow digits and max 10
+    if (name === 'phone') {
+      const digits = value.replace(/\D/g, '')
+      if (digits.length <= 10) {
+        setForm(f => ({ ...f, phone: digits }))
+        setPhoneError(digits.length > 0 && digits.length !== 10 ? 'Phone must be exactly 10 digits' : '')
+      }
+      return
+    }
+    
+    setForm(f => ({ ...f, [name]: value }))
+  }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    // No backend — open prefilled WhatsApp with the user's enquiry.
-    const text = `Hi ${shop.name}, I'm ${form.name || 'a customer'}${
-      form.phone ? ` (${form.phone})` : ''
-    }. ${form.message || shop.whatsapp.defaultMessage}`
-    window.open(buildWhatsAppLink(text), '_blank', 'noopener,noreferrer')
-    setSubmitted(true)
+    
+    // Validate phone if provided
+    if (form.phone && form.phone.length !== 10) {
+      setPhoneError('Phone must be exactly 10 digits')
+      return
+    }
+    
+    try {
+      // Save enquiry to Firestore
+      await addDoc(collection(db, 'enquiries'), {
+        name: form.name,
+        phone: form.phone || null,
+        message: form.message || null,
+        createdAt: serverTimestamp()
+      })
+      
+      setSubmitted(true)
+      setForm({ name: '', phone: '', message: '' })
+      setPhoneError('')
+      
+      // Reset submitted message after 5 seconds
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (error) {
+      console.error('Error saving enquiry:', error)
+      alert('Failed to submit enquiry. Please try again.')
+    }
   }
 
   const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(shop.address.full)}&output=embed`
@@ -110,7 +147,7 @@ export default function Contact() {
           >
             <h3 className="text-gray-900 font-semibold text-lg">Send us a message</h3>
             <p className="text-sm text-gray-500 mt-1">
-              Fill in your details and we'll continue the chat over WhatsApp.
+              Fill in your details and we'll get back to you soon.
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -124,13 +161,17 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label className="text-xs font-medium text-gray-700" htmlFor="phone">Phone</label>
+                <label className="text-xs font-medium text-gray-700" htmlFor="phone">Phone (10 digits)</label>
                 <input
                   id="phone" name="phone" type="tel"
                   value={form.phone} onChange={onChange}
-                  className="mt-1.5 w-full rounded-lg bg-gray-50 border border-gray-200 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50"
-                  placeholder="+91 98765 43210"
+                  className={`mt-1.5 w-full rounded-lg bg-gray-50 border ${
+                    phoneError ? 'border-red-500' : 'border-gray-200'
+                  } px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500/50`}
+                  placeholder="9876543210"
+                  maxLength="10"
                 />
+                {phoneError && <p className="text-xs text-red-600 mt-1">{phoneError}</p>}
               </div>
             </div>
 
@@ -146,14 +187,15 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition w-full sm:w-auto"
+              disabled={!!phoneError}
+              className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <WhatsAppIcon className="w-5 h-5" /> Send via WhatsApp
+              Submit Enquiry <ArrowRightIcon className="w-5 h-5" />
             </button>
 
             {submitted && (
               <p className="mt-3 text-sm text-emerald-600">
-                Opening WhatsApp… you can also call us directly at {shop.primaryPhone}.
+                ✓ Thank you! Your enquiry has been submitted successfully. We'll contact you soon.
               </p>
             )}
           </form>
