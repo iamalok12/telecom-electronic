@@ -1,20 +1,47 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../config/firebase'
 import Hero from '../components/Hero'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
-import products from '../data/products.json'
+import PromotionPopup from '../components/PromotionPopup'
 import brands from '../data/brands.json'
 import services from '../data/services.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
 
 export default function Home() {
-  const featured = products.items.filter((p) => p.featured).slice(0, 4)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
   const topServices = services.items.slice(0, 3)
+
+  // Fetch featured products from Firestore
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productsSnapshot = await getDocs(collection(db, 'products'))
+        const productsData = productsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        // Filter for featured products and limit to 4
+        const featuredProducts = productsData.filter(p => p.featured).slice(0, 4)
+        setProducts(featuredProducts)
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   return (
     <div>
+      <PromotionPopup />
       <Hero />
 
       {/* Featured Products */}
@@ -34,13 +61,24 @@ export default function Home() {
             </Link>
           </div>
         </AnimateIn>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((p, i) => (
-            <AnimateIn key={p.id} variant="fade-up" delay={i * 80}>
-              <ProductCard product={p} />
-            </AnimateIn>
-          ))}
-        </div>
+        {loading ? (
+          <div className="mt-10 text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
+            <p className="text-gray-600 mt-4">Loading featured products...</p>
+          </div>
+        ) : products.length === 0 ? (
+          <div className="mt-10 text-center py-12">
+            <p className="text-gray-600">No featured products available yet.</p>
+          </div>
+        ) : (
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((p, i) => (
+              <AnimateIn key={p.id} variant="fade-up" delay={i * 80}>
+                <ProductCard product={p} />
+              </AnimateIn>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Services preview */}

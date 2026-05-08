@@ -1,18 +1,51 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
-import products from '../data/products.json'
 
 export default function Products() {
   const [active, setActive] = useState('all')
+  const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // Fetch products and categories from Firestore
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch products
+        const productsSnapshot = await getDocs(collection(db, 'products'))
+        const productsData = productsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setProducts(productsData)
+
+        // Fetch categories
+        const categoriesSnapshot = await getDocs(collection(db, 'categories'))
+        const categoriesData = categoriesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setCategories(categoriesData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const filtered = useMemo(() => {
-    if (active === 'all') return products.items
-    return products.items.filter((p) => p.category === active)
-  }, [active])
+    if (active === 'all') return products
+    return products.filter((p) => p.category === active)
+  }, [active, products])
 
-  const tabs = [{ id: 'all', name: 'All' }, ...products.categories]
+  const tabs = [{ id: 'all', name: 'All' }, ...categories]
 
   return (
     <div className="container-x py-14 md:py-20">
@@ -43,16 +76,29 @@ export default function Products() {
         })}
       </AnimateIn>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {filtered.map((p, i) => (
-          <AnimateIn key={p.id} variant="fade-up" delay={Math.min(i * 60, 400)}>
-            <ProductCard product={p} />
-          </AnimateIn>
-        ))}
-      </div>
+      {loading ? (
+        <div className="mt-10 text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
+          <p className="text-gray-600 mt-4">Loading products...</p>
+        </div>
+      ) : (
+        <>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filtered.map((p, i) => (
+              <AnimateIn key={p.id} variant="fade-up" delay={Math.min(i * 60, 400)}>
+                <ProductCard product={p} />
+              </AnimateIn>
+            ))}
+          </div>
 
-      {filtered.length === 0 && (
-        <p className="mt-10 text-center text-gray-500">No products available in this category.</p>
+          {filtered.length === 0 && (
+            <p className="mt-10 text-center text-gray-500">
+              {products.length === 0 
+                ? 'No products available yet. Check back soon!' 
+                : 'No products available in this category.'}
+            </p>
+          )}
+        </>
       )}
     </div>
   )
