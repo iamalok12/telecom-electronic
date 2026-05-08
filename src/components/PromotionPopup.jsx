@@ -3,18 +3,34 @@ import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { FiX } from 'react-icons/fi';
 
+
 export default function PromotionPopup() {
   const [promotion, setPromotion] = useState(null);
+  const [shouldShow, setShouldShow] = useState(false); // always false on first render
   const [loading, setLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchPromotion = async () => {
+    // Always check after mount
+    const checkAndFetch = async () => {
+      const lastShown = localStorage.getItem('promotionPopupLastShown');
+      let show = true;
+      if (lastShown) {
+        const lastShownTime = Number(lastShown);
+        const now = Date.now();
+        if (now - lastShownTime <= 3600000) {
+          show = false;
+        }
+      }
+      setShouldShow(show);
+      if (!show) {
+        setLoading(false);
+        return;
+      }
       try {
         // Fetch promotion from Firestore
         const docRef = doc(db, 'settings', 'promotion');
         const docSnap = await getDoc(docRef);
-        
         if (docSnap.exists() && docSnap.data().active && docSnap.data().image) {
           setPromotion(docSnap.data());
         }
@@ -24,21 +40,22 @@ export default function PromotionPopup() {
         setLoading(false);
       }
     };
-
     // Delay showing popup slightly for better UX
     const timer = setTimeout(() => {
-      fetchPromotion();
+      checkAndFetch();
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
 
   const handleDismiss = () => {
     setPromotion(null);
+    // Set current timestamp in localStorage
+    localStorage.setItem('promotionPopupLastShown', Date.now().toString());
   };
 
   // Don't render anything until data is loaded
-  if (loading || !promotion) {
+
+  if (loading || !promotion || !shouldShow) {
     return null;
   }
 

@@ -1,11 +1,14 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 export default function ProductCard({ product }) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white hover:border-brand-300 hover:shadow-md transition">
       <div className="aspect-[4/3] overflow-hidden bg-gray-100">
-        <img
+        <LazyLoadImage
           src={product.image}
           alt={product.name}
-          loading="lazy"
+          effect="blur"
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
