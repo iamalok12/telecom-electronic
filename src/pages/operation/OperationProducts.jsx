@@ -87,6 +87,11 @@ export default function OperationProducts() {
         createdAt: serverTimestamp()
       });
 
+      // Clear caches
+      sessionStorage.removeItem('products');
+      sessionStorage.removeItem('categories');
+      sessionStorage.removeItem('featuredProducts');
+
       await fetchCategories();
       setNewCategoryName('');
       setShowCategoryModal(false);
@@ -110,6 +115,12 @@ export default function OperationProducts() {
 
     try {
       await deleteDoc(doc(db, 'categories', categoryId));
+      
+      // Clear caches
+      sessionStorage.removeItem('products');
+      sessionStorage.removeItem('categories');
+      sessionStorage.removeItem('featuredProducts');
+      
       await fetchCategories();
     } catch (error) {
       console.error('Error deleting category:', error);
@@ -162,6 +173,11 @@ export default function OperationProducts() {
       // Delete from Firestore
       await deleteDoc(doc(db, 'products', product.id));
       
+      // Clear caches
+      sessionStorage.removeItem('products');
+      sessionStorage.removeItem('categories');
+      sessionStorage.removeItem('featuredProducts');
+      
       // Update local state
       setProducts(products.filter(p => p.id !== product.id));
     } catch (error) {
@@ -190,6 +206,11 @@ export default function OperationProducts() {
         // Update existing product
         await updateDoc(doc(db, 'products', editingProduct.id), productData);
         
+        // Clear caches
+        sessionStorage.removeItem('products');
+        sessionStorage.removeItem('categories');
+        sessionStorage.removeItem('featuredProducts');
+        
         // Update local state
         setProducts(products.map(p => 
           p.id === editingProduct.id ? { ...p, ...productData } : p
@@ -198,6 +219,11 @@ export default function OperationProducts() {
         // Create new product
         productData.createdAt = serverTimestamp();
         const docRef = await addDoc(collection(db, 'products'), productData);
+        
+        // Clear caches
+        sessionStorage.removeItem('products');
+        sessionStorage.removeItem('categories');
+        sessionStorage.removeItem('featuredProducts');
         
         // Add to local state
         setProducts([...products, { id: docRef.id, ...productData }]);

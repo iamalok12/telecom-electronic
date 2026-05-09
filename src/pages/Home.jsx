@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, where, limit } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import Hero from '../components/Hero'
 import SectionHeader from '../components/SectionHeader'
@@ -17,18 +17,31 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
   const topSolutions = solutions.items.slice(0, 3)
 
-  // Fetch featured products from Firestore
+  // Fetch featured products from Firestore with caching
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productsSnapshot = await getDocs(collection(db, 'products'))
+        // Check sessionStorage cache first
+        const cachedFeatured = sessionStorage.getItem('featuredProducts')
+        if (cachedFeatured) {
+          setProducts(JSON.parse(cachedFeatured))
+          setLoading(false)
+          return
+        }
+
+        // Query only featured products with limit 4
+        const q = query(
+          collection(db, 'products'),
+          where('featured', '==', true),
+          limit(4)
+        )
+        const productsSnapshot = await getDocs(q)
         const productsData = productsSnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
-        // Filter for featured products and limit to 4
-        const featuredProducts = productsData.filter(p => p.featured).slice(0, 4)
-        setProducts(featuredProducts)
+        setProducts(productsData)
+        sessionStorage.setItem('featuredProducts', JSON.stringify(productsData))
       } catch (error) {
         console.error('Error fetching products:', error)
       } finally {

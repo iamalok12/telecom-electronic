@@ -11,10 +11,22 @@ export default function Products() {
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Fetch products and categories from Firestore
+  // Fetch products and categories from Firestore with caching
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Check sessionStorage cache first
+        const cachedProducts = sessionStorage.getItem('products')
+        const cachedCategories = sessionStorage.getItem('categories')
+        
+        if (cachedProducts && cachedCategories) {
+          // Use cached data for instant loading
+          setProducts(JSON.parse(cachedProducts))
+          setCategories(JSON.parse(cachedCategories))
+          setLoading(false)
+          return
+        }
+
         // Fetch products
         const productsSnapshot = await getDocs(collection(db, 'products'))
         const productsData = productsSnapshot.docs.map(doc => ({
@@ -22,6 +34,7 @@ export default function Products() {
           ...doc.data()
         }))
         setProducts(productsData)
+        sessionStorage.setItem('products', JSON.stringify(productsData))
 
         // Fetch categories
         const categoriesSnapshot = await getDocs(collection(db, 'categories'))
@@ -30,6 +43,7 @@ export default function Products() {
           ...doc.data()
         }))
         setCategories(categoriesData)
+        sessionStorage.setItem('categories', JSON.stringify(categoriesData))
       } catch (error) {
         console.error('Error fetching data:', error)
       } finally {
