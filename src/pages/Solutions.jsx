@@ -1,12 +1,48 @@
+import { useState, useEffect } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import AnimateIn from '../components/AnimateIn'
-import solutions from '../data/solutions.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, CheckIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
 import { getCtaLinks } from '../utils/links'
 
 export default function Solutions() {
+  const [solutions, setSolutions] = useState([])
+  const [loading, setLoading] = useState(true)
   const cta = getCtaLinks()
+
+  useEffect(() => {
+    const fetchSolutions = async () => {
+      try {
+        // Check sessionStorage cache first
+        const cachedSolutions = sessionStorage.getItem('solutions')
+        
+        if (cachedSolutions) {
+          // Use cached data for instant loading
+          setSolutions(JSON.parse(cachedSolutions))
+          setLoading(false)
+          return
+        }
+
+        // Fetch from Firestore if no cache
+        const querySnapshot = await getDocs(collection(db, 'solutions'))
+        const solutionsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setSolutions(solutionsData)
+        sessionStorage.setItem('solutions', JSON.stringify(solutionsData))
+      } catch (error) {
+        console.error('Error fetching solutions:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchSolutions()
+  }, [])
+
   return (
     <div className="container-x py-14 md:py-20">
       <AnimateIn variant="fade-up">
@@ -17,9 +53,14 @@ export default function Solutions() {
         />
       </AnimateIn>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {solutions.items.map((s, i) => (
-          <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
+      {loading ? (
+        <div className="mt-10 text-center text-gray-500">Loading solutions...</div>
+      ) : solutions.length === 0 ? (
+        <div className="mt-10 text-center text-gray-500">No solutions available at the moment.</div>
+      ) : (
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {solutions.map((s, i) => (
+            <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
           <article
             className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition h-full"
           >
@@ -40,6 +81,7 @@ export default function Solutions() {
           </AnimateIn>
         ))}
       </div>
+      )}
 
       <AnimateIn variant="scale" delay={100}>
       <div className="mt-14 rounded-2xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5">

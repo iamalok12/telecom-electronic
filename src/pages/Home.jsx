@@ -7,49 +7,84 @@ import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
 import PromotionPopup from '../components/PromotionPopup'
-import partners from '../data/partners.json'
-import solutions from '../data/solutions.json'
 import shop from '../data/shop.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
 
 export default function Home() {
   const [products, setProducts] = useState([])
+  const [solutions, setSolutions] = useState([])
+  const [partners, setPartners] = useState([])
   const [loading, setLoading] = useState(true)
-  const topSolutions = solutions.items.slice(0, 3)
 
-  // Fetch featured products from Firestore with caching
+  // Fetch featured products, solutions, and partners from Firestore
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
         // Check sessionStorage cache first
         const cachedFeatured = sessionStorage.getItem('featuredProducts')
+        const cachedSolutions = sessionStorage.getItem('homeSolutions')
+        const cachedPartners = sessionStorage.getItem('homePartners')
+        
         if (cachedFeatured) {
           setProducts(JSON.parse(cachedFeatured))
+        }
+        if (cachedSolutions) {
+          setSolutions(JSON.parse(cachedSolutions))
+        }
+        if (cachedPartners) {
+          setPartners(JSON.parse(cachedPartners))
+        }
+        
+        if (cachedFeatured && cachedSolutions && cachedPartners) {
           setLoading(false)
           return
         }
 
-        // Query only featured products with limit 4
-        const q = query(
-          collection(db, 'products'),
-          where('featured', '==', true),
-          limit(4)
-        )
-        const productsSnapshot = await getDocs(q)
-        const productsData = productsSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-        setProducts(productsData)
-        sessionStorage.setItem('featuredProducts', JSON.stringify(productsData))
+        // Fetch featured products
+        if (!cachedFeatured) {
+          const q = query(
+            collection(db, 'products'),
+            where('featured', '==', true),
+            limit(4)
+          )
+          const productsSnapshot = await getDocs(q)
+          const productsData = productsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setProducts(productsData)
+          sessionStorage.setItem('featuredProducts', JSON.stringify(productsData))
+        }
+
+        // Fetch top 3 solutions
+        if (!cachedSolutions) {
+          const solutionsSnapshot = await getDocs(collection(db, 'solutions'))
+          const solutionsData = solutionsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          })).slice(0, 3)
+          setSolutions(solutionsData)
+          sessionStorage.setItem('homeSolutions', JSON.stringify(solutionsData))
+        }
+
+        // Fetch top 12 partners
+        if (!cachedPartners) {
+          const partnersSnapshot = await getDocs(collection(db, 'partners'))
+          const partnersData = partnersSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          })).sort((a, b) => a.name.localeCompare(b.name)).slice(0, 12)
+          setPartners(partnersData)
+          sessionStorage.setItem('homePartners', JSON.stringify(partnersData))
+        }
       } catch (error) {
-        console.error('Error fetching products:', error)
+        console.error('Error fetching data:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchProducts()
+    fetchData()
   }, [])
 
   return (
@@ -104,7 +139,7 @@ export default function Home() {
           />
         </AnimateIn>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {topSolutions.map((s, i) => (
+          {solutions.map((s, i) => (
             <AnimateIn key={s.id} variant="fade-up" delay={i * 100}>
               <div className="rounded-2xl border border-gray-200 bg-white p-6 hover:border-brand-300 hover:shadow-md transition h-full">
                 <span className="grid place-items-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-200">
@@ -135,11 +170,26 @@ export default function Home() {
             align="center"
           />
         </AnimateIn>
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {partners.items.slice(0, 12).map((b, i) => (
-            <AnimateIn key={b.id} variant="scale" delay={i * 40}>
-              <div className="rounded-xl border border-gray-200 bg-white hover:bg-gray-50 py-5 px-3 grid place-items-center text-sm font-semibold text-gray-700 hover:text-gray-900 transition shadow-sm h-full">
-                {b.name}
+        <div className="mt-10 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+          {partners.map((partner, i) => (
+            <AnimateIn key={partner.id} variant="scale" delay={i * 40}>
+              <div className="group rounded-xl border-2 border-gray-200 bg-white hover:border-brand-400 hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="aspect-square bg-gradient-to-br from-gray-50 to-white group-hover:from-brand-50 group-hover:to-white transition-all duration-300 flex items-center justify-center">
+                  {partner.image ? (
+                    <img
+                      src={partner.image}
+                      alt={partner.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-xs sm:text-sm font-semibold text-gray-400">No Image</span>
+                    </div>
+                  )}
+                </div>
+                <div className="px-3 py-2 border-t border-gray-100 bg-white">
+                  <h3 className="text-xs font-semibold text-gray-900 text-center truncate">{partner.name}</h3>
+                </div>
               </div>
             </AnimateIn>
           ))}
