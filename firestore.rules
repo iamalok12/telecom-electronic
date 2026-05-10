@@ -13,6 +13,18 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
     
+    // Solutions - public read, authenticated write
+    match /solutions/{solutionId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Partners - public read, authenticated write
+    match /partners/{partnerId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
     // Enquiries - public can create, authenticated can read/delete
     match /enquiries/{enquiryId} {
       allow create: if true;
