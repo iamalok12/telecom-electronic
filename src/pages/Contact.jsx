@@ -59,7 +59,7 @@ export default function Contact() {
     }
   }
 
-  const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(shop.address.full)}&output=embed`
+  const mapsSrc = `https://www.google.com/maps?q=25.605609455020918,85.13871581045557&output=embed`
 
   return (
     <div className="container-x py-14 md:py-20">
