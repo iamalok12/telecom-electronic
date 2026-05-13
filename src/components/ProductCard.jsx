@@ -4,7 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 export default function ProductCard({ product }) {
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white hover:border-brand-300 hover:shadow-md transition">
-      <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+      <div className="aspect-square overflow-hidden bg-gray-100">
         <LazyLoadImage
           src={product.image}
           alt={product.name}
