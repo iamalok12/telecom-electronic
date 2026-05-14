@@ -53,7 +53,7 @@ export default function Products() {
         <SectionHeader
           eyebrow="Our Products"
           title="Cameras, recorders & accessories"
-          subtitle="Browse our catalogue of CCTV cameras, DVR/NVR systems and security accessories. Call us for live pricing and combos."
+          subtitle="Browse our advanced range of security, surveillance and safety solutions. Call us for live pricing and combos."
         />
       </AnimateIn>
 
