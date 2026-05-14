@@ -20,63 +20,34 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Check sessionStorage cache first
-        const cachedFeatured = sessionStorage.getItem('featuredProducts')
-        const cachedSolutions = sessionStorage.getItem('homeSolutions')
-        const cachedPartners = sessionStorage.getItem('homePartners')
-        
-        if (cachedFeatured) {
-          setProducts(JSON.parse(cachedFeatured))
-        }
-        if (cachedSolutions) {
-          setSolutions(JSON.parse(cachedSolutions))
-        }
-        if (cachedPartners) {
-          setPartners(JSON.parse(cachedPartners))
-        }
-        
-        if (cachedFeatured && cachedSolutions && cachedPartners) {
-          setLoading(false)
-          return
-        }
-
         // Fetch featured products
-        if (!cachedFeatured) {
-          const q = query(
-            collection(db, 'products'),
-            where('featured', '==', true),
-            limit(4)
-          )
-          const productsSnapshot = await getDocs(q)
-          const productsData = productsSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setProducts(productsData)
-          sessionStorage.setItem('featuredProducts', JSON.stringify(productsData))
-        }
+        const q = query(
+          collection(db, 'products'),
+          where('featured', '==', true),
+          limit(4)
+        )
+        const productsSnapshot = await getDocs(q)
+        const productsData = productsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setProducts(productsData)
 
         // Fetch top 3 solutions
-        if (!cachedSolutions) {
-          const solutionsSnapshot = await getDocs(collection(db, 'solutions'))
-          const solutionsData = solutionsSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          })).slice(0, 3)
-          setSolutions(solutionsData)
-          sessionStorage.setItem('homeSolutions', JSON.stringify(solutionsData))
-        }
+        const solutionsSnapshot = await getDocs(collection(db, 'solutions'))
+        const solutionsData = solutionsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })).slice(0, 3)
+        setSolutions(solutionsData)
 
         // Fetch top 12 partners
-        if (!cachedPartners) {
-          const partnersSnapshot = await getDocs(collection(db, 'partners'))
-          const partnersData = partnersSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          })).sort((a, b) => a.name.localeCompare(b.name)).slice(0, 12)
-          setPartners(partnersData)
-          sessionStorage.setItem('homePartners', JSON.stringify(partnersData))
-        }
+        const partnersSnapshot = await getDocs(collection(db, 'partners'))
+        const partnersData = partnersSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })).sort((a, b) => a.name.localeCompare(b.name)).slice(0, 12)
+        setPartners(partnersData)
       } catch (error) {
         console.error('Error fetching data:', error)
       } finally {

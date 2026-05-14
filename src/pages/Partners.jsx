@@ -11,17 +11,7 @@ export default function Partners() {
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        // Check sessionStorage cache first
-        const cachedPartners = sessionStorage.getItem('partners')
-        
-        if (cachedPartners) {
-          // Use cached data for instant loading
-          setPartners(JSON.parse(cachedPartners))
-          setLoading(false)
-          return
-        }
-
-        // Fetch from Firestore if no cache
+        // Fetch from Firestore
         const querySnapshot = await getDocs(collection(db, 'partners'))
         const partnersData = querySnapshot.docs.map(doc => ({
           id: doc.id,
@@ -29,7 +19,6 @@ export default function Partners() {
         }))
         const sortedPartners = partnersData.sort((a, b) => a.name.localeCompare(b.name))
         setPartners(sortedPartners)
-        sessionStorage.setItem('partners', JSON.stringify(sortedPartners))
       } catch (error) {
         console.error('Error fetching partners:', error)
       } finally {

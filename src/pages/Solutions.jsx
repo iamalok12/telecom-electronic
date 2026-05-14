@@ -15,24 +15,13 @@ export default function Solutions() {
   useEffect(() => {
     const fetchSolutions = async () => {
       try {
-        // Check sessionStorage cache first
-        const cachedSolutions = sessionStorage.getItem('solutions')
-        
-        if (cachedSolutions) {
-          // Use cached data for instant loading
-          setSolutions(JSON.parse(cachedSolutions))
-          setLoading(false)
-          return
-        }
-
-        // Fetch from Firestore if no cache
+        // Fetch from Firestore
         const querySnapshot = await getDocs(collection(db, 'solutions'))
         const solutionsData = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         }))
         setSolutions(solutionsData)
-        sessionStorage.setItem('solutions', JSON.stringify(solutionsData))
       } catch (error) {
         console.error('Error fetching solutions:', error)
       } finally {
