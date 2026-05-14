@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, getDocs, query, where, limit } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import Hero from '../components/Hero'
 import SectionHeader from '../components/SectionHeader'
@@ -23,8 +23,7 @@ export default function Home() {
         // Fetch featured products
         const q = query(
           collection(db, 'products'),
-          where('featured', '==', true),
-          limit(4)
+          where('featured', '==', true)
         )
         const productsSnapshot = await getDocs(q)
         const productsData = productsSnapshot.docs.map(doc => ({
