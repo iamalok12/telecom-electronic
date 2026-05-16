@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import Hero from '../components/Hero'
+import SecurityAwarenessBanner from '../components/SecurityAwarenessBanner'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
@@ -76,6 +77,7 @@ export default function Home() {
       />
       <PromotionPopup />
       <Hero />
+      <SecurityAwarenessBanner />
 
       {/* Featured Products */}
       <section className="container-x py-16 md:py-20">
