@@ -3,6 +3,8 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import AnimateIn from '../components/AnimateIn'
+import SEO from '../components/SEO'
+import { createBreadcrumbStructuredData } from '../utils/structuredData'
 import shop from '../data/shop.json'
 import { getCtaLinks } from '../utils/links'
 import { PhoneIcon, MailIcon, MapPinIcon, WhatsAppIcon, ArrowRightIcon } from '../components/Icons'
@@ -61,8 +63,20 @@ export default function Contact() {
 
   const mapsSrc = `https://www.google.com/maps?q=25.605609455020918,85.13871581045557&output=embed`
 
+  const breadcrumbData = createBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://telecom-electronics.com/' },
+    { name: 'Contact', url: 'https://telecom-electronics.com/contact' }
+  ])
+
   return (
     <div className="container-x py-14 md:py-20">
+      <SEO 
+        title="Contact Us - Get in Touch for Security Solutions"
+        description="Visit our shop in Patna, call us, or send a WhatsApp message. Free consultations and site surveys available. Mon-Sat 10 AM - 9 PM."
+        keywords="contact Telecom Electronics, Patna security shop, CCTV shop Patna, free consultation, site survey, contact security solutions"
+        url="https://telecom-electronics.com/contact"
+        structuredData={breadcrumbData}
+      />
       <AnimateIn variant="fade-up">
         <SectionHeader
           eyebrow="Contact"

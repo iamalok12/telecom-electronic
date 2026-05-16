@@ -4,6 +4,8 @@ import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
+import SEO from '../components/SEO'
+import { createBreadcrumbStructuredData } from '../utils/structuredData'
 
 export default function Products() {
   const [active, setActive] = useState('all')
@@ -47,8 +49,20 @@ export default function Products() {
 
   const tabs = [{ id: 'all', name: 'All' }, ...categories]
 
+  const breadcrumbData = createBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://telecom-electronics.com/' },
+    { name: 'Products', url: 'https://telecom-electronics.com/products' }
+  ])
+
   return (
     <div className="container-x py-14 md:py-20">
+      <SEO 
+        title="CCTV Products - Cameras, Recorders & Accessories"
+        description="Browse our advanced range of CCTV cameras, DVRs, NVRs, and security accessories. IP cameras, analog cameras, network video recorders, and more from trusted brands."
+        keywords="CCTV cameras, IP cameras, DVR, NVR, security cameras, surveillance cameras, dome cameras, bullet cameras, PTZ cameras, CCTV accessories"
+        url="https://telecom-electronics.com/products"
+        structuredData={breadcrumbData}
+      />
       <AnimateIn variant="fade-up">
         <SectionHeader
           eyebrow="Our Products"

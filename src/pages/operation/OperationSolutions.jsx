@@ -30,7 +30,10 @@ const ICON_OPTIONS = [
   { value: 'settings', label: 'Settings' },
   { value: 'star', label: 'Star' },
   { value: 'users', label: 'Users' },
-  { value: 'server', label: 'Server' }
+  { value: 'server', label: 'Server' },
+  { value: 'car', label: 'Car' },
+  { value: 'visibility', label: 'Visibility' },
+  { value: 'fire', label: 'Fire Department' },
 ];
 
 export default function OperationSolutions() {

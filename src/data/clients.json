@@ -1,0 +1,109 @@
+{
+  "categories": [
+    {
+      "id": "government",
+      "name": "Government Sector",
+      "icon": "🏛️",
+      "clients": [
+        "DM Office Patna",
+        "DM Office Nawada",
+        "DM Office Lakhisarai",
+        "Department of Planning Bihar",
+        "Department of Education",
+        "Department of Panchatiraj",
+        "Department of Health",
+        "DC Office Deoghar",
+        "DC Office Jamsedpur",
+        "ADG Office Bihar",
+        "Rajgir Zoo Safari",
+        "Patna Zoo",
+        "Department of Forest",
+        "Department of Finance Bihar",
+        "Deptt of Industry Bihar",
+        "Chief Secretary Bihar",
+        "AG Office Patna",
+        "AG Office Ranchi",
+        "SDO Office Deoghar",
+        "Baba Baidnath Mandir"
+      ]
+    },
+    {
+      "id": "hotels",
+      "name": "Hotels",
+      "icon": "🏨",
+      "clients": [
+        "Maurya Hotel",
+        "Chanakya Hotel",
+        "Anand Lok",
+        "Fort Hotel",
+        "Samrat Hotel",
+        "Srii Vinayak Hotel",
+        "Akash Hotel",
+        "Suprabha Hotel",
+        "Amalfi Grand Hotel"
+      ]
+    },
+    {
+      "id": "hospitals",
+      "name": "Hospitals",
+      "icon": "🏥",
+      "clients": [
+        "Ford Hospital",
+        "Ruban Hospital",
+        "Tara Hospital",
+        "Advance Neuro Hospital",
+        "Arogya Hospital",
+        "Paras Hospital",
+        "AB Eye Institute Hospital"
+      ]
+    },
+    {
+      "id": "colleges",
+      "name": "Colleges & Universities",
+      "icon": "🎓",
+      "clients": [
+        "Katihar Medical College",
+        "PMCH",
+        "NMCH",
+        "Mata Gujri Medical College",
+        "Neta Ji Medical College",
+        "Patna University",
+        "Nalanda University"
+      ]
+    }
+  ],
+  "featured": [
+    {
+      "name": "Chief Secretary Bihar",
+      "category": "Government"
+    },
+    {
+      "name": "Maurya Hotel",
+      "category": "Hotels"
+    },
+    {
+      "name": "Paras Hospital",
+      "category": "Hospitals"
+    },
+    {
+      "name": "Patna University",
+      "category": "Colleges"
+    },
+    {
+      "name": "Department of Health",
+      "category": "Government"
+    },
+    {
+      "name": "Chanakya Hotel",
+      "category": "Hotels"
+    },
+    {
+      "name": "Ford Hospital",
+      "category": "Hospitals"
+    },
+    {
+      "name": "Nalanda University",
+      "category": "Colleges"
+    }
+  ]
+}

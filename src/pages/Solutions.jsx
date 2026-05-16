@@ -3,6 +3,8 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import SectionHeader from '../components/SectionHeader'
 import AnimateIn from '../components/AnimateIn'
+import SEO from '../components/SEO'
+import { createBreadcrumbStructuredData } from '../utils/structuredData'
 import shop from '../data/shop.json'
 import { ServiceIcon, CheckIcon, PhoneIcon, WhatsAppIcon } from '../components/Icons'
 import { getCtaLinks } from '../utils/links'
@@ -32,8 +34,20 @@ export default function Solutions() {
     fetchSolutions()
   }, [])
 
+  const breadcrumbData = createBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://telecom-electronics.com/' },
+    { name: 'Solutions', url: 'https://telecom-electronics.com/solutions' }
+  ])
+
   return (
     <div className="container-x py-14 md:py-20">
+      <SEO 
+        title="Security Solutions - Installation, Maintenance & Support"
+        description="End-to-end security solutions including CCTV installation, maintenance, access control, fire safety, networking, and 24/7 support. Free site surveys available."
+        keywords="CCTV installation, security system maintenance, access control systems, fire safety, security solutions, site survey, security support Patna"
+        url="https://telecom-electronics.com/solutions"
+        structuredData={breadcrumbData}
+      />
       <AnimateIn variant="fade-up">
         <SectionHeader
           eyebrow="Solutions"

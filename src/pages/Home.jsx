@@ -7,7 +7,10 @@ import SectionHeader from '../components/SectionHeader'
 import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
 import PromotionPopup from '../components/PromotionPopup'
+import SEO from '../components/SEO'
+import { createLocalBusinessStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData'
 import shop from '../data/shop.json'
+import clientsData from '../data/clients.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
 
 export default function Home() {
@@ -57,8 +60,20 @@ export default function Home() {
     fetchData()
   }, [])
 
+  const structuredData = createLocalBusinessStructuredData()
+  const breadcrumbData = createBreadcrumbStructuredData([
+    { name: 'Home', url: 'https://telecom-electronics.com/' }
+  ])
+
   return (
     <div>
+      <SEO 
+        title="CCTV & Security Solutions in Patna, Bihar"
+        description="Your trusted partner for advanced CCTV cameras, security systems, and surveillance solutions in Patna. Serving 40+ prestigious clients including government institutions, hospitals, and universities. Professional installation, maintenance, and 24/7 support since 1984."
+        keywords="CCTV cameras Patna, security systems Bihar, surveillance solutions, CCTV installation, IP cameras, DVR, NVR, access control, fire safety, security infrastructure Patna, government security systems, hospital CCTV, university surveillance"
+        url="https://telecom-electronics.com/"
+        structuredData={[structuredData, breadcrumbData]}
+      />
       <PromotionPopup />
       <Hero />
 
@@ -171,6 +186,76 @@ export default function Home() {
           >
             See all partners <ArrowRightIcon className="w-4 h-4" />
           </Link>
+        </AnimateIn>
+      </section>
+
+      {/* Trusted Clients Section */}
+      <section className="container-x py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
+        <AnimateIn variant="fade-up">
+          <SectionHeader
+            eyebrow="Trusted By"
+            title="Serving prestigious organizations"
+            subtitle="From government institutions to leading hospitals and universities — security partners since 1984."
+            align="center"
+          />
+        </AnimateIn>
+
+        {/* Featured Clients Grid */}
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {clientsData.featured.map((client, index) => (
+            <AnimateIn key={index} variant="fade-up" delay={index * 60}>
+              <div className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-5 hover:border-brand-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 min-h-[90px] flex flex-col">
+                {/* Decorative accent */}
+                <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-brand-100 to-brand-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-8 -mt-8 rounded-full blur-xl"></div>
+                
+                {/* Client info */}
+                <div className="relative flex-1">
+                  <div className="flex items-start gap-2">
+                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></div>
+                    <p className="text-xs sm:text-sm font-semibold text-gray-800 leading-snug group-hover:text-brand-700 transition-colors">
+                      {client.name}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Category badge */}
+                <div className="mt-2 pt-2 border-t border-gray-100 opacity-50 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-brand-100 text-brand-700 inline-block">
+                    {client.category}
+                  </span>
+                </div>
+              </div>
+            </AnimateIn>
+          ))}
+        </div>
+
+        {/* Stats and CTA */}
+        <AnimateIn variant="fade-up" delay={100}>
+          <div className="mt-10 flex flex-col items-center gap-6">
+            {/* Stats */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-center">
+              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                <p className="text-2xl font-bold text-brand-600">{clientsData.categories.reduce((acc, cat) => acc + cat.clients.length, 0)}+</p>
+                <p className="text-xs text-gray-600 mt-1">Trusted Clients</p>
+              </div>
+              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                <p className="text-2xl font-bold text-brand-600">40+</p>
+                <p className="text-xs text-gray-600 mt-1">Years of Service</p>
+              </div>
+              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                <p className="text-2xl font-bold text-brand-600">4</p>
+                <p className="text-xs text-gray-600 mt-1">Key Sectors</p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <Link
+              to="/partners"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+            >
+              View all our clients <ArrowRightIcon className="w-4 h-4" />
+            </Link>
+          </div>
         </AnimateIn>
       </section>
 

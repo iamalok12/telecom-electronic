@@ -1,0 +1,9 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow admin/operation routes
+Disallow: /operation/
+
+# Sitemap location
+Sitemap: https://telecom-electronics.com/sitemap.xml
