@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getAnalytics } from 'firebase/analytics';
 
@@ -21,19 +21,8 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 
-// Initialize Cloud Firestore and get a reference to the service
+// Initialize Cloud Firestore with offline persistence
 export const db = getFirestore(app);
-
-// Enable Firestore offline persistence for faster loading
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code === 'failed-precondition') {
-    // Multiple tabs open, persistence can only be enabled in one tab at a time
-    console.warn('Firestore persistence failed: Multiple tabs open');
-  } else if (err.code === 'unimplemented') {
-    // Browser doesn't support persistence
-    console.warn('Firestore persistence not supported');
-  }
-});
 
 // Initialize Firebase Storage and get a reference to the service
 export const storage = getStorage(app);
