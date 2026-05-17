@@ -49,6 +49,21 @@ export default function Contact() {
         createdAt: serverTimestamp()
       })
       
+      // Prepare WhatsApp message
+      let whatsappMessage = `*New Enquiry*%0A%0A*Name:* ${encodeURIComponent(form.name)}`
+      
+      if (form.phone) {
+        whatsappMessage += `%0A*Phone:* ${form.phone}`
+      }
+      
+      if (form.message) {
+        whatsappMessage += `%0A%0A*Message:*%0A${encodeURIComponent(form.message)}`
+      }
+      
+      // Open WhatsApp
+      const whatsappUrl = `https://wa.me/${shop.whatsapp.number}?text=${whatsappMessage}`
+      window.open(whatsappUrl, '_blank')
+      
       setSubmitted(true)
       setForm({ name: '', phone: '', message: '' })
       setPhoneError('')
@@ -202,14 +217,16 @@ export default function Contact() {
             <button
               type="submit"
               disabled={!!phoneError}
-              className="mt-5 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mt-5 group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold transition-all duration-200 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5"
             >
-              Submit Enquiry <ArrowRightIcon className="w-5 h-5" />
+              <WhatsAppIcon className="w-5 h-5" />
+              Send via WhatsApp
+              <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
 
             {submitted && (
-              <p className="mt-3 text-sm text-emerald-600">
-                ✓ Thank you! Your enquiry has been submitted successfully. We'll contact you soon.
+              <p className="mt-3 text-sm text-emerald-600 bg-emerald-50 px-4 py-2.5 rounded-lg border border-emerald-200">
+                ✓ Opening WhatsApp... Your enquiry has been saved and you'll be redirected to WhatsApp to confirm.
               </p>
             )}
           </form>
