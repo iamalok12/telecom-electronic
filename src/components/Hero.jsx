@@ -93,13 +93,6 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={cta.tel}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition shadow-lg shadow-brand-600/20"
-            >
-              <PhoneIcon className="w-5 h-5" />
-              Call {shop.primaryPhone}
-            </a>
-            <a
               href={cta.whatsapp}
               target="_blank"
               rel="noreferrer"
