@@ -14,6 +14,33 @@ import shop from '../data/shop.json'
 import clientsData from '../data/clients.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
 
+// Icon helper for client categories
+const getCategoryIcon = (category) => {
+  const icons = {
+    'Government': (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clipRule="evenodd" />
+      </svg>
+    ),
+    'Hotels': (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+      </svg>
+    ),
+    'Hospitals': (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+      </svg>
+    ),
+    'Colleges': (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+      </svg>
+    )
+  }
+  return icons[category] || icons['Government']
+}
+
 export default function Home() {
   const [products, setProducts] = useState([])
   const [solutions, setSolutions] = useState([])
@@ -192,73 +219,90 @@ export default function Home() {
       </section>
 
       {/* Trusted Clients Section */}
-      <section className="container-x py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-        <AnimateIn variant="fade-up">
-          <SectionHeader
-            eyebrow="Trusted By"
-            title="Serving prestigious organizations"
-            subtitle="From government institutions to leading hospitals and universities — security partners since 1984."
-            align="center"
-          />
-        </AnimateIn>
+      <section className="relative bg-gradient-to-br from-blue-50 via-brand-50/30 to-orange-50/20 py-16 md:py-20 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-brand-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"></div>
+        </div>
 
-        {/* Featured Clients Grid */}
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div className="container-x relative z-10">
+          <AnimateIn variant="fade-up">
+            <SectionHeader
+              eyebrow="Trusted By"
+              title="Serving prestigious organizations"
+              subtitle="From government institutions to leading hospitals and universities — security partners since 1984."
+              align="center"
+            />
+          </AnimateIn>
+
+          {/* Featured Clients Grid */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
           {clientsData.featured.map((client, index) => (
             <AnimateIn key={index} variant="fade-up" delay={index * 60}>
-              <div className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white p-5 hover:border-brand-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 min-h-[90px] flex flex-col">
-                {/* Decorative accent */}
-                <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-brand-100 to-brand-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -ml-8 -mt-8 rounded-full blur-xl"></div>
+              <div className="group relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-gradient-to-br from-white to-gray-50 p-6 hover:border-brand-500 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 min-h-[140px] flex flex-col">
+                {/* Decorative gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
-                {/* Client info */}
-                <div className="relative flex-1">
-                  <div className="flex items-start gap-2">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0"></div>
-                    <p className="text-xs sm:text-sm font-semibold text-gray-800 leading-snug group-hover:text-brand-700 transition-colors">
-                      {client.name}
-                    </p>
+                {/* Icon/Badge at top */}
+                <div className="relative mb-3">
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-100 text-brand-600 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300 shadow-sm">
+                    {getCategoryIcon(client.category)}
                   </div>
+                </div>
+                
+                {/* Client name */}
+                <div className="relative flex-1">
+                  <h3 className="text-base font-bold text-gray-900 leading-tight group-hover:text-brand-700 transition-colors">
+                    {client.name}
+                  </h3>
                 </div>
 
                 {/* Category badge */}
-                <div className="mt-2 pt-2 border-t border-gray-100 opacity-50 group-hover:opacity-100 transition-opacity">
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-brand-100 text-brand-700 inline-block">
+                <div className="relative mt-4 pt-3 border-t-2 border-gray-200 group-hover:border-brand-300 transition-colors">
+                  <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-md inline-block">
                     {client.category}
                   </span>
+                </div>
+
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-x-12 group-hover:translate-x-full transition-transform duration-700"></div>
                 </div>
               </div>
             </AnimateIn>
           ))}
-        </div>
-
-        {/* Stats and CTA */}
-        <AnimateIn variant="fade-up" delay={100}>
-          <div className="mt-10 flex flex-col items-center gap-6">
-            {/* Stats */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-center">
-              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
-                <p className="text-2xl font-bold text-brand-600">{clientsData.categories.reduce((acc, cat) => acc + cat.clients.length, 0)}+</p>
-                <p className="text-xs text-gray-600 mt-1">Trusted Clients</p>
-              </div>
-              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
-                <p className="text-2xl font-bold text-brand-600">40+</p>
-                <p className="text-xs text-gray-600 mt-1">Years of Service</p>
-              </div>
-              <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
-                <p className="text-2xl font-bold text-brand-600">4</p>
-                <p className="text-xs text-gray-600 mt-1">Key Sectors</p>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <Link
-              to="/partners"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
-            >
-              View all our clients <ArrowRightIcon className="w-4 h-4" />
-            </Link>
           </div>
-        </AnimateIn>
+
+          {/* Stats and CTA */}
+          <AnimateIn variant="fade-up" delay={100}>
+            <div className="mt-10 flex flex-col items-center gap-6">
+              {/* Stats */}
+              <div className="flex flex-wrap items-center justify-center gap-6 text-center">
+                <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <p className="text-2xl font-bold text-brand-600">{clientsData.categories.reduce((acc, cat) => acc + cat.clients.length, 0)}+</p>
+                  <p className="text-xs text-gray-600 mt-1">Trusted Clients</p>
+                </div>
+                <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <p className="text-2xl font-bold text-brand-600">40+</p>
+                  <p className="text-xs text-gray-600 mt-1">Years of Service</p>
+                </div>
+                <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
+                  <p className="text-2xl font-bold text-brand-600">4</p>
+                  <p className="text-xs text-gray-600 mt-1">Key Sectors</p>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <Link
+                to="/partners"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+              >
+                View all our clients <ArrowRightIcon className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimateIn>
+        </div>
       </section>
 
       {/* Locations strip */}
