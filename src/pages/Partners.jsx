@@ -67,8 +67,8 @@ export default function Partners() {
   return (
     <div className="container-x py-14 md:py-20">
       <SEO 
-        title="Our Partners & Clients - Trusted Security Brands & Prestigious Clients"
-        description="We stock and service products from leading security manufacturers. Trusted by 40+ prestigious clients including government institutions, hospitals, hotels, and universities across Bihar and Jharkhand."
+        title="Our Partners & Clients - Trusted Security Brands"
+        description="We stock and service products from leading security manufacturers. Trusted by government institutions, hospitals, hotels, and universities across Bihar and Jharkhand since 1984."
         keywords="CCTV brands, security brands, Hikvision, Dahua, CP Plus, security manufacturers, government clients, hospital security, hotel security, university security, Bihar security systems"
         url="https://telecom-electronics.com/partners"
         structuredData={breadcrumbData}
@@ -193,9 +193,6 @@ export default function Partners() {
                   <p className="text-sm text-gray-600">of Excellence & Trust</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-700 max-w-2xl">
-                Serving <span className="font-semibold text-brand-700">{clientsData.categories.reduce((acc, cat) => acc + cat.clients.length, 0)}+ prestigious clients</span> with cutting-edge security solutions and unmatched service.
-              </p>
             </div>
           </div>
         </AnimateIn>

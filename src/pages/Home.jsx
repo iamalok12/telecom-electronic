@@ -9,7 +9,7 @@ import ProductCard from '../components/ProductCard'
 import AnimateIn from '../components/AnimateIn'
 import PromotionPopup from '../components/PromotionPopup'
 import SEO from '../components/SEO'
-import { createLocalBusinessStructuredData, createBreadcrumbStructuredData } from '../utils/structuredData'
+import { createLocalBusinessStructuredData, createBreadcrumbStructuredData, createWebSiteStructuredData } from '../utils/structuredData'
 import shop from '../data/shop.json'
 import clientsData from '../data/clients.json'
 import { ServiceIcon, ArrowRightIcon, MapPinIcon, PhoneIcon } from '../components/Icons'
@@ -89,6 +89,7 @@ export default function Home() {
   }, [])
 
   const structuredData = createLocalBusinessStructuredData()
+  const websiteData = createWebSiteStructuredData()
   const breadcrumbData = createBreadcrumbStructuredData([
     { name: 'Home', url: 'https://telecom-electronics.com/' }
   ])
@@ -97,10 +98,10 @@ export default function Home() {
     <div>
       <SEO 
         title="CCTV & Security Solutions in Patna, Bihar"
-        description="Your trusted partner for advanced CCTV cameras, security systems, and surveillance solutions in Patna. Serving 40+ prestigious clients including government institutions, hospitals, and universities. Professional installation, maintenance, and 24/7 support since 1984."
+        description="Your trusted partner for advanced CCTV cameras, security systems, and surveillance solutions in Patna. Serving government institutions, hospitals, and universities. Professional installation, maintenance, and 24/7 support since 1984."
         keywords="CCTV cameras Patna, security systems Bihar, surveillance solutions, CCTV installation, IP cameras, DVR, NVR, access control, fire safety, security infrastructure Patna, government security systems, hospital CCTV, university surveillance"
         url="https://telecom-electronics.com/"
-        structuredData={[structuredData, breadcrumbData]}
+        structuredData={[websiteData, structuredData, breadcrumbData]}
       />
       <PromotionPopup />
       <Hero />
@@ -279,10 +280,6 @@ export default function Home() {
             <div className="mt-10 flex flex-col items-center gap-6">
               {/* Stats */}
               <div className="flex flex-wrap items-center justify-center gap-6 text-center">
-                <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
-                  <p className="text-2xl font-bold text-brand-600">{clientsData.categories.reduce((acc, cat) => acc + cat.clients.length, 0)}+</p>
-                  <p className="text-xs text-gray-600 mt-1">Trusted Clients</p>
-                </div>
                 <div className="px-6 py-3 rounded-xl bg-white border border-gray-200 shadow-sm">
                   <p className="text-2xl font-bold text-brand-600">40+</p>
                   <p className="text-xs text-gray-600 mt-1">Years of Service</p>

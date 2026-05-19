@@ -1,5 +1,31 @@
 // Helper functions for creating structured data (JSON-LD)
 
+export function createWebSiteStructuredData() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://telecom-electronics.com/#website',
+    name: 'Telecom Electronics',
+    url: 'https://telecom-electronics.com',
+    description: 'Your trusted partner for advanced security and surveillance solutions in Patna, Bihar',
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://telecom-electronics.com/#organization',
+      name: 'Telecom Electronics',
+      url: 'https://telecom-electronics.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://telecom-electronics.com/logo.png'
+      }
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://telecom-electronics.com/products?search={search_term_string}',
+      'query-input': 'required name=search_term_string'
+    }
+  }
+}
+
 export function createLocalBusinessStructuredData() {
   return {
     '@context': 'https://schema.org',
